@@ -15,8 +15,6 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
-        with:
-          node-version: 18
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -24,28 +22,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # (development build)
-      - name: Build for (development)
+      - name: Build project
         run: pnpm build --mode development
 
-      - name: Deploy development
+      - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting:development
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-      # Clean dist before next build
-      - name: Clean dist folder
-        run: rm -rf dist
-
-      # (production build)
-      - name: Build for (production)
-        run: pnpm build --mode production
-
-      - name: Deploy production
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting:production
+          args: deploy --only hosting
+          name: dist
+          path: dist
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

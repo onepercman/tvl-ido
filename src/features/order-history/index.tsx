@@ -114,10 +114,10 @@ const desktopColumns = [
     },
   },
   {
-    title: "Total Amount (USDT)",
+    title: "Total Amount (USDC)",
     field: "",
     render(row: OrderHistory) {
-      return formatNumber(row.quantity * row.package_amount) + " USDT"
+      return formatNumber(row.quantity * row.package_amount) + " USDC"
     },
   },
   {
@@ -203,11 +203,11 @@ const mobileColumns = [
                   </tr>
                   <tr>
                     <td className="pr-8 text-sm text-secondary">
-                      Total Amount (USDT)
+                      Total Amount (USDC)
                     </td>
                     <td className="text-base font-medium">
                       {formatNumber(row.quantity * row.package_amount) +
-                        " USDT"}
+                        " USDC"}
                     </td>
                   </tr>
                   <tr>

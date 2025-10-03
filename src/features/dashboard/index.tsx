@@ -172,7 +172,7 @@ const ReferralPerformance: FC = () => {
               <Spinner />
             ) : (
               <div className="text-[32px] font-bold">
-                {formatNumber(data?.downline_volume ?? 0)} USDT
+                {formatNumber(data?.downline_volume ?? 0)} USDC
               </div>
             )}
           </div>
@@ -190,7 +190,7 @@ const ReferralPerformance: FC = () => {
               <Spinner />
             ) : (
               <div className="text-[32px] font-bold">
-                {formatNumber(data?.total_reward ?? 0)} USDT
+                {formatNumber(data?.total_reward ?? 0)} USDC
               </div>
             )}
           </div>
@@ -212,7 +212,7 @@ const DirectDownline: FC = () => {
         <Table.Header>
           <Table.Column align="left">Wallet Address</Table.Column>
           <Table.Column align="left">Joined Date</Table.Column>
-          <Table.Column align="left">Total Spent (USDT)</Table.Column>
+          <Table.Column align="left">Total Spent (USDC)</Table.Column>
         </Table.Header>
         <Table.Body>
           {isLoading ? (
@@ -273,7 +273,7 @@ const CommissionHistory: FC = () => {
           <Table.Column align="left">TX Hash</Table.Column>
           <Table.Column align="left">Date</Table.Column>
           <Table.Column align="left">Level</Table.Column>
-          <Table.Column align="left">Amount Earned (USDT)</Table.Column>
+          <Table.Column align="left">Amount Earned (USDC)</Table.Column>
         </Table.Header>
         <Table.Body>
           {isLoading ? (
@@ -305,7 +305,7 @@ const CommissionHistory: FC = () => {
                 </Table.Cell>
                 <Table.Cell align="left">F{commission.level}</Table.Cell>
                 <Table.Cell align="left">
-                  {commission.amount_earned} USDT
+                  {commission.amount_earned} USDC
                 </Table.Cell>
               </Table.Row>
             ))
@@ -358,7 +358,7 @@ const LeaderPerformance: FC = () => {
               <Spinner />
             ) : (
               <div className="text-[32px] font-bold">
-                {formatNumber(data?.downline_volume ?? 0)} USDT
+                {formatNumber(data?.downline_volume ?? 0)} USDC
               </div>
             )}
           </div>
@@ -374,7 +374,7 @@ const LeaderPerformance: FC = () => {
               <Spinner />
             ) : (
               <div className="text-[32px] font-bold">
-                {formatNumber(data?.leader_reward ?? 0)} USDT
+                {formatNumber(data?.leader_reward ?? 0)} USDC
               </div>
             )}
           </div>
@@ -456,7 +456,7 @@ const Withdraw: FC = () => {
               <Spinner />
             ) : (
               <div className="text-[32px] font-bold">
-                {formatNumber(data?.withdrawal_amount ?? 0)} USDT
+                {formatNumber(data?.withdrawal_amount ?? 0)} USDC
               </div>
             )}
           </div>
@@ -515,7 +515,7 @@ const Withdraw: FC = () => {
               <Field.Label className="inline-flex items-center justify-between gap-4">
                 <span>Amount to Withdraw</span>
                 <span className="font-semibold text-foreground">
-                  {formatNumber(data?.withdrawal_amount)} USDT
+                  {formatNumber(data?.withdrawal_amount)} USDC
                 </span>
               </Field.Label>
               <Button size="lg" className="justify-between px-4 font-normal">
@@ -563,7 +563,7 @@ const Withdraw: FC = () => {
                 <IconSax.Warning2 />
                 <span className="text-sm text-secondary">
                   Your withdrawal will be processed automatically as the amount
-                  is under $1,000 USDT.
+                  is under $1,000 USDC.
                 </span>
               </div>
             </div>

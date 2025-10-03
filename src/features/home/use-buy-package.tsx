@@ -24,14 +24,14 @@ export function useBuyPackage() {
   const { data: allowance, refetch: refetchAllowance } = useReadContract({
     query: { enabled: !!walletClient?.account.address },
     abi: erc20Abi,
-    address: addresses.USDT,
+    address: addresses.USDC,
     functionName: "allowance",
     args: [walletClient?.account.address as any, addresses.Sale],
   })
 
   async function approve(amount: bigint) {
     const toast = toaster.loading({
-      title: "USDT spending cap approval",
+      title: "USDC spending cap approval",
       description: "Please confirm the transaction in your wallet",
     }) as any as string
 
@@ -39,7 +39,7 @@ export function useBuyPackage() {
       if (!walletClient) return
       const tx = await walletClient.writeContract({
         abi: erc20Abi,
-        address: addresses.USDT,
+        address: addresses.USDC,
         functionName: "approve",
         args: [addresses.Sale, amount],
       })
@@ -57,7 +57,7 @@ export function useBuyPackage() {
           duration: 10000,
           type: "success",
           title: "Success",
-          description: "Approved USDT spending cap successfully",
+          description: "Approved USDC spending cap successfully",
         })
         return true
       }

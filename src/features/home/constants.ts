@@ -3,7 +3,7 @@ import { bsc, bscTestnet } from "viem/chains"
 import { useChainId } from "wagmi"
 
 export const addresses = {
-  USDT: {
+  USDC: {
     [bscTestnet.id]: "0xdeb82ECC2474Cb37A1f740E2d9Ce28815B815A3f",
     [bsc.id]: "0x55d398326f99059fF775485246999027B3197955",
   },

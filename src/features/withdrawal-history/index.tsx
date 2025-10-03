@@ -36,7 +36,7 @@ export default function WithdrawalHistory() {
         <Table.Header>
           <Table.Column align="left">Withdrawal ID</Table.Column>
           <Table.Column align="left">Request Date</Table.Column>
-          <Table.Column align="left">Amount (USDT)</Table.Column>
+          <Table.Column align="left">Amount (USDC)</Table.Column>
           <Table.Column align="left">Status</Table.Column>
           <Table.Column align="left">Completion Date</Table.Column>
           <Table.Column align="left">IP Address</Table.Column>
@@ -65,7 +65,7 @@ export default function WithdrawalHistory() {
                   )}
                 </Table.Cell>
                 <Table.Cell align="left">
-                  {formatNumber(withdrawal.amount)} USDT
+                  {formatNumber(withdrawal.amount)} USDC
                 </Table.Cell>
                 <Table.Cell align="left">{withdrawal.status_string}</Table.Cell>
                 <Table.Cell align="left">

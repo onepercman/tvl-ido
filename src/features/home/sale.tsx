@@ -25,7 +25,7 @@ import { HiMinus, HiPlus } from "react-icons/hi"
 import { useSearchParams } from "react-router-dom"
 import { cn } from "react-tvcx"
 import { useStore } from "use-valtio-store"
-import { useUSDTBalance } from "../root/use-usdt-balance"
+import { useUSDCBalance } from "../root/use-usdt-balance"
 import UserStore from "../user/user.store"
 import { Round, Tier } from "./event.interface"
 import { RecentTransactions } from "./recent-transactions"
@@ -83,7 +83,7 @@ export const Sale: FC = () => {
 
   const refCodeParams = searchParams.get("ref") ?? undefined
 
-  const { data: usdtBalance } = useUSDTBalance()
+  const { data: usdtBalance } = useUSDCBalance()
 
   const [refCode, setRefCode] = useState<string>()
 
@@ -404,7 +404,7 @@ export const Sale: FC = () => {
           <div className="inline-flex items-center justify-between gap-4">
             <span className="font-medium">Total Amount</span>
             <span className="text-xl font-semibold text-primary">
-              {formatNumber(+value * +pack)} USDT
+              {formatNumber(+value * +pack)} USDC
             </span>
           </div>
         </div>
@@ -413,7 +413,7 @@ export const Sale: FC = () => {
           color="primary"
           leftIcon={
             isConnected ? (
-              <Icon.USDT fontSize={24} />
+              <Icon.USDC fontSize={24} />
             ) : (
               <IconSax.Wallet2 variant="Bold" />
             )
@@ -440,7 +440,7 @@ export const Sale: FC = () => {
               ? "Insufficient Balance"
               : _insufficientAmount
                 ? "Insufficient Amount"
-                : `Pay ${+value ? formatNumber(+pack * +value) : "by"} USDT`
+                : `Pay ${+value ? formatNumber(+pack * +value) : "by"} USDC`
             : "Connect Wallet to Purchase"}
         </Button>
       </div>
@@ -562,7 +562,7 @@ const SaleCard: FC<{ round: Round; tier: Tier }> = ({ round, tier }) => {
       <div className="inline-flex w-full items-center justify-center gap-2.5">
         <Icon.USD fontSize={24} />
         <div className="inline-flex items-center gap-1">
-          <span className="text-xl font-semibold">{tier.token_price} USDT</span>
+          <span className="text-xl font-semibold">{tier.token_price} USDC</span>
           <span className="text-lg text-secondary">/token</span>
         </div>
       </div>

@@ -2,14 +2,14 @@ import { CreateAppKit } from "@reown/appkit"
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi"
 import { AppKitNetwork } from "@reown/appkit/networks"
 import { createAppKit, Metadata } from "@reown/appkit/react"
-import { bsc, bscTestnet } from "viem/chains"
+import { monadTestnet } from "viem/chains"
 import { ENV } from "./env.config"
 import { Mode } from "./mode.config"
 
 const defaultChains = {
-  [Mode.Dev]: bscTestnet,
-  [Mode.Stg]: bsc,
-  [Mode.Prd]: bsc,
+  [Mode.Dev]: monadTestnet,
+  [Mode.Stg]: monadTestnet,
+  [Mode.Prd]: monadTestnet,
 }
 
 const defaultChain = defaultChains[ENV.MODE]

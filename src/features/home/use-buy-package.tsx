@@ -95,7 +95,7 @@ export function useBuyPackage() {
       })
     }
 
-    const parsedValue = parseUnits(String(+value * +pack), 18)
+    const parsedValue = parseUnits(String(+value * +pack), 6)
 
     if (allowance < parsedValue) {
       const isApproved = await approve(parsedValue)

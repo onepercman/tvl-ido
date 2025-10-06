@@ -1,6 +1,6 @@
 import { useAppKitAccount } from "@reown/appkit/react"
 import { useQuery } from "@tanstack/react-query"
-import { erc20Abi, formatEther } from "viem"
+import { erc20Abi, formatUnits } from "viem"
 import { usePublicClient } from "wagmi"
 import { useAddresses } from "../home/constants"
 
@@ -19,7 +19,7 @@ export function useUSDCBalance() {
         functionName: "balanceOf",
         args: [address as any],
       })
-      return +formatEther(balance)
+      return +formatUnits(balance, 6)
     },
   })
 }

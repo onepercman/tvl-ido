@@ -4,12 +4,12 @@ import { useChainId } from "wagmi"
 
 export const addresses = {
   USDC: {
-    [monadTestnet.id]: "0xdeb82ECC2474Cb37A1f740E2d9Ce28815B815A3f",
-    [bsc.id]: "0x55d398326f99059fF775485246999027B3197955",
+    [monadTestnet.id]: "0xf817257fed379853cDe0fa4F97AB987181B1E5Ea",
+    [bsc.id]: "_",
   },
   Sale: {
-    [monadTestnet.id]: "0x389cc206939826610FCcf2E31843349F8C36D6f4",
-    [bsc.id]: "0x5CD6E441d267b3a0D6BE0E7929416DeE02F6b235",
+    [monadTestnet.id]: "0x54A3242e242aAF139562d739305e2e0Ea3F93689",
+    [bsc.id]: "_",
   },
 }
 

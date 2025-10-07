@@ -66,7 +66,7 @@ export const Hero: FC = () => {
             variants={{
               appear: {
                 opacity: [0, 1],
-                scale: [1.2, 1],
+                scale: [1.8, 1.5],
                 filter: ["blur(10px)", "none"],
                 transition: { duration: 0.5 },
               },
@@ -85,7 +85,7 @@ export const Hero: FC = () => {
             animate={["appear", "idle"]}
             src="/material/coins.png"
             alt=""
-            className="w-[70%] select-none"
+            className="w-full select-none"
           />
         </div>
       </Container>

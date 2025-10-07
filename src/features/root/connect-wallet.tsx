@@ -46,12 +46,12 @@ export const ConnectWallet: FC = () => {
                 Order history
               </Link>
             </Menu.Item>
-            <Menu.Item asChild value="2" className="justify-start">
+            {/* <Menu.Item asChild value="2" className="justify-start">
               <Link to="/dashboard">
                 <IconSax.Element4 size={20} variant="Bold" />
                 Dashboard
               </Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item
               value="3"
               className="justify-start"

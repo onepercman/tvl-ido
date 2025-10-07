@@ -25,8 +25,7 @@ export class EventService {
   order(data: {
     chain_id: string
     event_id: number
-    package_amount: number
-    quantity: number
+    amount: number
     round_number: number
     tier_number: number
     ref_code?: string

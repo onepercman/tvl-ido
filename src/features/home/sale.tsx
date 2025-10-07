@@ -7,21 +7,16 @@ import {
   Input,
   NumberInput,
   Progress,
-  RadioGroup,
-  Select,
-  Spinner,
   Tabs,
 } from "@/shared/components"
 import { useCountdown } from "@/shared/hooks/use-countdown"
 import { useViewWidth } from "@/shared/hooks/use-view-width"
 import { Icon, IconSax } from "@/shared/icons"
 import { formatNumber } from "@/shared/utils/number"
-import { createListCollection, Portal } from "@ark-ui/react"
 import { useAppKitAccount } from "@reown/appkit/react"
 import useEmblaCarousel from "embla-carousel-react"
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { isMobile } from "react-device-detect"
-import { HiMinus, HiPlus } from "react-icons/hi"
 import { useSearchParams } from "react-router-dom"
 import { cn } from "react-tvcx"
 import { useStore } from "use-valtio-store"
@@ -29,7 +24,6 @@ import { useUSDCBalance } from "../root/use-usdt-balance"
 import UserStore from "../user/user.store"
 import { Round, Tier } from "./event.interface"
 import { RecentTransactions } from "./recent-transactions"
-import { TopReferrers } from "./top-referrers"
 import { useBuyPackage } from "./use-buy-package"
 import { useCurrentRoundInfo } from "./use-current-round"
 import { useEvent } from "./use-event"
@@ -37,7 +31,10 @@ import { useValidRefCode } from "./use-valid-ref-code"
 import { useWhitelist } from "./use-whitelist"
 
 export const Sale: FC = () => {
-  const { user, isLeader } = useStore(UserStore)
+  const {
+    user,
+    // isLeader
+  } = useStore(UserStore)
   const [slideRef, slideApi] = useEmblaCarousel()
   const saleBoxRef = useRef<HTMLDivElement>(null)
   const [scrollAreaHeight, setScrollAreaHeight] = useState<number>(0)
@@ -87,8 +84,10 @@ export const Sale: FC = () => {
 
   const [refCode, setRefCode] = useState<string>()
 
-  const { data: isValidRefCode, isFetching: isCheckingRefCode } =
-    useValidRefCode(refCode)
+  const {
+    data: isValidRefCode,
+    // isFetching: isCheckingRefCode
+  } = useValidRefCode(refCode)
 
   useEffect(() => {
     setRefCode("")
@@ -114,19 +113,17 @@ export const Sale: FC = () => {
   const isWhitelistRestricted =
     !whitelistCountdown.isFinished && isWhitelist === false
 
-  const [value, setValue] = useState("1")
-  const [pack, setPack] = useState<string>(packageOptions[0].value)
+  const [inputValue, setInputValue] = useState("")
+
+  const amount = inputValue.replace(/[$,]/g, "")
 
   const _insufficientBalance =
-    usdtBalance !== undefined &&
-    +value &&
-    currentTier &&
-    +value * +pack > usdtBalance
+    usdtBalance !== undefined && +amount && +amount > usdtBalance
 
   const _insufficientAmount =
     currentTier &&
     currentRoundInfo &&
-    currentTier.total_money - currentRoundInfo.money_sold < +value * +pack
+    currentTier.total_money - currentRoundInfo.money_sold < +amount
 
   useEffect(() => {
     if (event?.rounds && currentRoundInfo && slideApi) {
@@ -161,11 +158,9 @@ export const Sale: FC = () => {
 
     return buyPackage(
       event.event_id,
-      value,
-      pack,
+      amount,
       currentRound.round_number,
       currentTier.tier_number,
-      refCode,
     )
   }
 
@@ -181,7 +176,7 @@ export const Sale: FC = () => {
           <div className="inline-flex items-center gap-2">
             <Icon.ProtocolHandler className="text-xl text-primary sm:text-2xl" />
             <span className="text-lg font-bold text-primary sm:text-2xl">
-              Buy Token Package
+              Token Presale
             </span>
           </div>
           {!whitelistCountdown.isFinished ? (
@@ -260,7 +255,7 @@ export const Sale: FC = () => {
             />
           )}
           <div ref={slideRef} className="relative overflow-hidden py-8">
-            <div className="grid auto-cols-[100%] grid-flow-col gap-[28px] sm:auto-cols-[calc((100%-56px)/3)]">
+            <div className="grid auto-cols-[100%] grid-flow-col gap-[28px] sm:auto-cols-[calc((100%-28px)/2)]">
               {event?.rounds?.map(round =>
                 round.tiers.map(tier => (
                   <SaleCard
@@ -279,108 +274,49 @@ export const Sale: FC = () => {
           </div>
         ) : null}
         <div className="flex flex-col rounded-md border border-line-2 p-6 px-4 sm:px-6">
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-center xl:flex-col xl:items-stretch 2xl:flex-row 2xl:items-center">
-            <label className="inline-flex flex-1 items-center gap-6 sm:gap-[52px]">
-              <span className="min-w-24 flex-none font-medium">Package</span>
-              <RadioGroup
-                value={pack}
-                onValueChange={({ value }) => setPack(value as any)}
-                classNames={{
-                  base: "flex-row gap-4 flex-wrap hidden sm:flex",
-                  item: "px-4 py-2.5 gap-2 text-sm bg-component border border-line-2 rounded-[4px]",
-                }}
-              >
-                {packageOptions.map(item => (
-                  <RadioGroup.Item key={item.value} value={item.value}>
-                    {item.label}
-                  </RadioGroup.Item>
-                ))}
-              </RadioGroup>
-              <Select
-                value={[pack]}
-                onValueChange={({ value }) => setPack(value[0])}
-                collection={createListCollection({
-                  items: packageOptions,
-                  itemToString: i => i.label,
-                  itemToValue: i => i.value,
-                })}
-                classNames={{ base: "w-full sm:hidden" }}
-              >
-                <Select.Trigger asChild>
-                  <Button
-                    className="w-full border-line-2 bg-transparent"
-                    rightIcon={<IconSax.ArrowDown2 size={16} />}
-                  >
-                    <Select.ValueText />
-                  </Button>
-                </Select.Trigger>
-                <Portal>
-                  <Select.Content>
-                    {packageOptions.map(item => (
-                      <Select.Item item={item} key={item.value}>
-                        {item.label}
-                      </Select.Item>
-                    ))}
-                  </Select.Content>
-                </Portal>
-              </Select>
+          <div className="flex flex-col gap-6">
+            <label className="inline-flex items-start gap-6 sm:gap-[52px]">
+              <span className="min-w-24 flex-none pt-2 font-medium">
+                Amount
+              </span>
+              <div className="flex w-full flex-col gap-2">
+                <NumberInput
+                  value={inputValue}
+                  onValueChange={({ value }) => setInputValue(value)}
+                  min={0}
+                  allowOverflow
+                  className="w-full"
+                  formatOptions={{
+                    style: "currency",
+                    currency: "USD",
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2,
+                  }}
+                >
+                  <NumberInput.Input asChild>
+                    <Input placeholder="$0" className="w-full" />
+                  </NumberInput.Input>
+                </NumberInput>
+                <div className="flex flex-wrap items-center justify-end gap-2">
+                  {packageOptions.map(item => (
+                    <Button
+                      key={item.value}
+                      variant="outlined"
+                      onClick={() => setInputValue(item.value)}
+                    >
+                      {item.label}
+                    </Button>
+                  ))}
+                </div>
+              </div>
             </label>
           </div>
-          <hr className="my-6 border border-line-2" />
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-center xl:flex-col xl:items-stretch 2xl:flex-row 2xl:items-center">
-            <label className="inline-flex flex-1 items-center gap-6 sm:gap-[52px]">
-              <span className="min-w-24 flex-none font-medium">Quantity</span>
-              <NumberInput
-                defaultValue="1"
-                min={1}
-                max={Math.floor(
-                  Math.min(
-                    (usdtBalance ?? 0) / +pack,
-                    (currentTier.total_money - currentRoundInfo.money_sold) /
-                      +pack,
-                    10,
-                  ),
-                )}
-                value={value}
-                onValueChange={({ value }) => setValue(value)}
-                className="w-full"
-              >
-                <NumberInput.Input asChild>
-                  <Input
-                    prefix={
-                      <NumberInput.DecrementTrigger className="flex-none">
-                        <HiMinus />
-                      </NumberInput.DecrementTrigger>
-                    }
-                    suffix={
-                      <NumberInput.IncrementTrigger className="flex-none">
-                        <HiPlus />
-                      </NumberInput.IncrementTrigger>
-                    }
-                    maxLength={6}
-                    onKeyDown={function (e) {
-                      if ([".", ",", "-"].includes(e.key)) {
-                        e.preventDefault()
-                      }
-                    }}
-                    onPaste={function (e) {
-                      const paste = e.clipboardData.getData("text")
-                      if (/[.,-]/.test(paste)) {
-                        e.preventDefault()
-                      }
-                    }}
-                    className="w-full overflow-hidden"
-                    classNames={{
-                      input: "text-center grow min-w-0 w-full",
-                    }}
-                  />
-                </NumberInput.Input>
-              </NumberInput>
-            </label>
-            <div className="hidden h-full w-px flex-none bg-line-2 lg:block xl:hidden" />
-
-            <label className="inline-flex flex-1 items-center gap-6 sm:gap-[52px]">
-              <span className="flex-none font-medium">Referral Code</span>
+          {/* <hr className="my-6 border border-line-2" />
+          <div className="flex flex-col gap-6">
+            <label className="inline-flex items-center gap-6 sm:gap-[52px]">
+              <span className="min-w-24 flex-none font-medium">
+                Referral Code
+              </span>
               <Input
                 value={user?.referral ? user.referral : refCode}
                 onChange={e => setRefCode(e.target.value)}
@@ -392,7 +328,7 @@ export const Sale: FC = () => {
                 disabled={!!user?.referral || isLeader}
               />
             </label>
-          </div>
+          </div> */}
           {!!refCode?.trim() &&
           isValidRefCode !== undefined &&
           !isValidRefCode ? (
@@ -404,7 +340,7 @@ export const Sale: FC = () => {
           <div className="inline-flex items-center justify-between gap-4">
             <span className="font-medium">Total Amount</span>
             <span className="text-xl font-semibold text-primary">
-              {formatNumber(+value * +pack)} USDC
+              {formatNumber(+amount || 0)} USDC
             </span>
           </div>
         </div>
@@ -428,7 +364,7 @@ export const Sale: FC = () => {
           }}
           disabled={
             !!isConnected &&
-            (!+value ||
+            (!+amount ||
               isWhitelistRestricted ||
               _insufficientBalance ||
               _insufficientAmount ||
@@ -440,7 +376,7 @@ export const Sale: FC = () => {
               ? "Insufficient Balance"
               : _insufficientAmount
                 ? "Insufficient Amount"
-                : `Pay ${+value ? formatNumber(+pack * +value) : "by"} USDC`
+                : `Pay ${+amount ? formatNumber(+amount) : "by"} USDC`
             : "Connect Wallet to Purchase"}
         </Button>
       </div>
@@ -462,10 +398,10 @@ export const Sale: FC = () => {
             />{" "}
             Recent Transactions
           </Tabs.Trigger>
-          <Tabs.Trigger value="1">
+          {/* <Tabs.Trigger value="1">
             <IconSax.Rank variant="Bold" className="hidden sm:block" />
             Top Referrers
-          </Tabs.Trigger>
+          </Tabs.Trigger> */}
         </Tabs.List>
 
         <hr className="my-6 w-full border border-foreground/10" />
@@ -473,9 +409,9 @@ export const Sale: FC = () => {
         <Tabs.Content value="0">
           <RecentTransactions />
         </Tabs.Content>
-        <Tabs.Content value="1">
+        {/* <Tabs.Content value="1">
           <TopReferrers />
-        </Tabs.Content>
+        </Tabs.Content> */}
       </Tabs>
     </Container>
   )

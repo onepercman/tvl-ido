@@ -23,7 +23,7 @@ export const RecentTransactions: FC = () => {
             <div className="inline-flex items-center gap-2">
               <div className="inline-flex items-center gap-1.5">
                 <IconSax.Box variant="Bold" size={20} />
-                <span className="font-medium">${tx.total_money}</span>
+                <span className="font-medium">${tx.amount}</span>
               </div>
               <div className="inline-flex items-center gap-2 text-sm text-secondary sm:hidden">
                 <span>•</span>

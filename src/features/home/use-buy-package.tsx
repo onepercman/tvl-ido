@@ -83,7 +83,6 @@ export function useBuyPackage() {
   return async function buy(
     eventId: number,
     value: string,
-    pack: string,
     roundNumber: number,
     tierNumber: number,
     refCode?: string,
@@ -95,7 +94,7 @@ export function useBuyPackage() {
       })
     }
 
-    const parsedValue = parseUnits(String(+value * +pack), 6)
+    const parsedValue = parseUnits(value, 6)
 
     if (allowance < parsedValue) {
       const isApproved = await approve(parsedValue)
@@ -111,8 +110,7 @@ export function useBuyPackage() {
       const { data } = await eventService.order({
         chain_id: chainId.toString(),
         event_id: eventId,
-        package_amount: +pack,
-        quantity: +value,
+        amount: +value,
         round_number: roundNumber,
         tier_number: tierNumber,
         ref_code: refCode,

@@ -8,16 +8,14 @@ export interface OrderHistory {
   round_name: string
   tier_number: number
   tier_name: string
-  quantity: number
-  package_amount: number
+  amount: number
   token_price: number
-  total_money: number
+  total_token: number
   transaction_id: string
   chain_id: string
   created_at: string
   status: number
   status_string: string
-  total_token: number
 }
 
 export enum TransactionStatus {

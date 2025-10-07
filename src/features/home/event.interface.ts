@@ -44,10 +44,8 @@ export interface RecentTransaction {
   user_wallet: string
   chain_id: string
   tx_id: string
-  quantity: number
-  package_amount: number
+  amount: number
   token_price: number
-  total_money: number
   order_id: string
   created_at: string
 }

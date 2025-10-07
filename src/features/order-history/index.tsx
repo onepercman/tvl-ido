@@ -100,24 +100,10 @@ const desktopColumns = [
     },
   },
   {
-    title: "Round & Tier",
+    title: "Round",
     field: "",
     render(row: OrderHistory) {
       return `${row.round_name} ${row.tier_number}`
-    },
-  },
-  {
-    title: "Quantity",
-    field: "",
-    render(row: OrderHistory) {
-      return row.quantity
-    },
-  },
-  {
-    title: "Total Amount (USDC)",
-    field: "",
-    render(row: OrderHistory) {
-      return formatNumber(row.quantity * row.package_amount) + " USDC"
     },
   },
   {
@@ -190,9 +176,7 @@ const mobileColumns = [
                     </td>
                   </tr>
                   <tr>
-                    <td className="pr-8 text-sm text-secondary">
-                      Round & Tier
-                    </td>
+                    <td className="pr-8 text-sm text-secondary">Round</td>
                     <td className="text-base font-medium">{`${row.round_name} ${row.tier_number}`}</td>
                   </tr>
                   <tr>
@@ -200,15 +184,6 @@ const mobileColumns = [
                       Total Tokens
                     </td>
                     <td className="text-base font-medium">{row.total_token}</td>
-                  </tr>
-                  <tr>
-                    <td className="pr-8 text-sm text-secondary">
-                      Total Amount (USDC)
-                    </td>
-                    <td className="text-base font-medium">
-                      {formatNumber(row.quantity * row.package_amount) +
-                        " USDC"}
-                    </td>
                   </tr>
                   <tr>
                     <td className="pr-8 text-sm text-secondary">Status</td>

@@ -231,7 +231,7 @@ export const Sale: FC = () => {
               shape="circle"
               leftIcon={<IconSax.ArrowLeft size={20} />}
               className={cn(
-                "absolute bottom-12 left-0 z-50 -translate-x-1/2 sm:top-1/2 sm:-translate-y-1/2",
+                "absolute left-0 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2",
                 {
                   "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100":
                     !isMobile,
@@ -245,7 +245,7 @@ export const Sale: FC = () => {
               shape="circle"
               leftIcon={<IconSax.ArrowRight size={20} />}
               className={cn(
-                "absolute bottom-12 right-0 z-50 translate-x-1/2 sm:top-1/2 sm:-translate-y-1/2",
+                "absolute right-0 top-1/2 z-50 -translate-y-1/2 translate-x-1/2",
                 {
                   "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100":
                     !isMobile,
@@ -297,7 +297,7 @@ export const Sale: FC = () => {
                     <Input placeholder="$0" className="w-full" />
                   </NumberInput.Input>
                 </NumberInput>
-                <div className="flex flex-wrap items-center justify-end gap-2">
+                <div className="hidden flex-wrap items-center justify-end gap-2 sm:flex">
                   {packageOptions.map(item => (
                     <Button
                       key={item.value}
@@ -310,7 +310,21 @@ export const Sale: FC = () => {
                 </div>
               </div>
             </label>
+
+            <div className="flex w-full flex-wrap items-center justify-end gap-2 sm:hidden">
+              {packageOptions.map(item => (
+                <Button
+                  key={item.value}
+                  size="sm"
+                  variant="outlined"
+                  onClick={() => setInputValue(item.value)}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </div>
           </div>
+
           {/* <hr className="my-6 border border-line-2" />
           <div className="flex flex-col gap-6">
             <label className="inline-flex items-center gap-6 sm:gap-[52px]">
@@ -328,14 +342,14 @@ export const Sale: FC = () => {
                 disabled={!!user?.referral || isLeader}
               />
             </label>
-          </div> */}
+          </div>
           {!!refCode?.trim() &&
           isValidRefCode !== undefined &&
           !isValidRefCode ? (
             <div className="mt-4 text-sm text-error">
               Referral code is invalid
             </div>
-          ) : null}
+          ) : null} */}
           <hr className="my-6 border border-line-2" />
           <div className="inline-flex items-center justify-between gap-4">
             <span className="font-medium">Total Amount</span>

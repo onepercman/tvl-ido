@@ -1,7 +1,6 @@
 import { Container, Countdown } from "@/shared/components"
 import { useCountdown } from "@/shared/hooks/use-countdown"
 import { motion } from "framer-motion"
-import { FaDiscord, FaTelegram, FaXTwitter } from "react-icons/fa6"
 import { useCurrentRoundInfo } from "../home/use-current-round"
 import { useEvent } from "../home/use-event"
 
@@ -25,7 +24,7 @@ export default function Onboarding() {
         className="pointer-events-none fixed right-0 top-0 w-1/2 object-contain"
       />
 
-      <header className="inline-flex w-full border-b border-line-2 bg-component backdrop-blur">
+      {/* <header className="inline-flex w-full border-b border-line-2 bg-component backdrop-blur">
         <Container className="inline-flex items-center justify-between gap-4 py-8">
           <img src="/logo.svg" alt="logo" className="h-5 sm:h-[63px]" />
           <div className="inline-flex items-center gap-8">
@@ -57,7 +56,7 @@ export default function Onboarding() {
             </a>
           </div>
         </Container>
-      </header>
+      </header> */}
 
       <Container className="flex h-full grow flex-col-reverse items-center gap-10 pt-10 sm:flex-col sm:gap-20">
         {(event?.end_time && endTime.isFinished) ||

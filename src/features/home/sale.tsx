@@ -297,7 +297,11 @@ export const Sale: FC = () => {
                   }}
                 >
                   <NumberInput.Input asChild>
-                    <Input placeholder="$0" className="w-full" />
+                    <Input
+                      placeholder="Enter amount ($100 min, $5,000 max)"
+                      className="w-full"
+                      classNames={{ input: "text-center" }}
+                    />
                   </NumberInput.Input>
                 </NumberInput>
                 <div className="hidden flex-wrap items-center justify-end gap-2 md:flex">

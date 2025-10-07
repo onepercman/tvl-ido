@@ -176,7 +176,7 @@ export const Sale: FC = () => {
           <div className="inline-flex items-center gap-2">
             <Icon.ProtocolHandler className="text-xl text-primary sm:text-2xl" />
             <span className="text-lg font-bold text-primary sm:text-2xl">
-              Token Presale
+              Buy Token
             </span>
           </div>
           {!whitelistCountdown.isFinished ? (
@@ -283,21 +283,24 @@ export const Sale: FC = () => {
                 <NumberInput
                   value={inputValue}
                   onValueChange={({ value }) => setInputValue(value)}
-                  min={0}
-                  allowOverflow
+                  min={100}
+                  max={5000}
+                  step={1}
+                  pattern="[0-9]*"
+                  inputMode="numeric"
                   className="w-full"
                   formatOptions={{
                     style: "currency",
                     currency: "USD",
                     minimumFractionDigits: 0,
-                    maximumFractionDigits: 2,
+                    maximumFractionDigits: 0,
                   }}
                 >
                   <NumberInput.Input asChild>
                     <Input placeholder="$0" className="w-full" />
                   </NumberInput.Input>
                 </NumberInput>
-                <div className="hidden flex-wrap items-center justify-end gap-2 sm:flex">
+                <div className="hidden flex-wrap items-center justify-end gap-2 md:flex">
                   {packageOptions.map(item => (
                     <Button
                       key={item.value}
@@ -311,7 +314,7 @@ export const Sale: FC = () => {
               </div>
             </label>
 
-            <div className="flex w-full flex-wrap items-center justify-end gap-2 sm:hidden">
+            <div className="flex w-full flex-wrap items-center justify-end gap-2 md:hidden">
               {packageOptions.map(item => (
                 <Button
                   key={item.value}
@@ -522,8 +525,9 @@ const SaleCard: FC<{ round: Round; tier: Tier }> = ({ round, tier }) => {
 
 const packageOptions = [
   { value: "100", label: "$100" },
-  { value: "300", label: "$300" },
+  { value: "200", label: "$200" },
   { value: "500", label: "$500" },
   { value: "1000", label: "$1,000" },
+  { value: "2000", label: "$2,000" },
   { value: "5000", label: "$5,000" },
 ]

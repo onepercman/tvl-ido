@@ -188,6 +188,12 @@ const mobileColumns = [
                   </tr>
                   <tr>
                     <td className="pr-8 text-sm text-secondary">
+                      Amount (USDC)
+                    </td>
+                    <td className="text-base font-medium">{row.amount}</td>
+                  </tr>
+                  <tr>
+                    <td className="pr-8 text-sm text-secondary">
                       Total Tokens
                     </td>
                     <td className="text-base font-medium">{row.total_token}</td>

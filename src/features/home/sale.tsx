@@ -104,7 +104,9 @@ export const Sale: FC = () => {
     : whitelistCountdown
 
   const isWhitelistRestricted =
-    !whitelistCountdown.isFinished && isWhitelist === false
+    currentRound?.round_number === 1 &&
+    !whitelistCountdown.isFinished &&
+    isWhitelist === false
 
   const [inputValue, setInputValue] = useState("")
 

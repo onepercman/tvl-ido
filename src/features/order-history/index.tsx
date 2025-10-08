@@ -107,6 +107,13 @@ const desktopColumns = [
     },
   },
   {
+    title: "Amount (USDC)",
+    field: "",
+    render(row: OrderHistory) {
+      return formatNumber(row.amount)
+    },
+  },
+  {
     title: "Total Tokens",
     field: "",
     render(row: OrderHistory) {

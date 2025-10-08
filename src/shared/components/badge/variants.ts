@@ -15,10 +15,10 @@ export const badge = tv({
     color: {
       foreground: "border border-line-3 bg-foreground text-invert",
       default: "border border-line-3 bg-default text-foreground",
-      primary: "bg-primary text-primary-foreground",
-      success: "bg-success text-success-foreground",
-      error: "bg-error text-error-foreground",
-      warning: "bg-warning text-warning-foreground",
+      primary: "border border-primary text-primary",
+      success: "border border-success text-success",
+      error: "border border-error text-error",
+      warning: "border border-warning text-warning",
     },
   },
   defaultVariants: {

@@ -484,9 +484,7 @@ const SaleCard: FC<{ round: Round; tier: Tier }> = ({ round, tier }) => {
         className="absolute -right-[31px] -top-[38px] text-[150px] text-foreground text-opacity-[3%]"
       />
       <IconSax.Box variant="Bold" />
-      <div className="mt-4 text-lg font-medium">
-        {round.round_name} {tier.tier_number}
-      </div>
+      <div className="mt-4 text-lg font-medium">{round.round_name}</div>
       <Badge size="xs" color="foreground" className="mt-2">
         {_isPrevTier ? "Completed" : _isNextTier ? "Upcoming" : "Active"}
       </Badge>

@@ -103,7 +103,7 @@ const desktopColumns = [
     title: "Round",
     field: "",
     render(row: OrderHistory) {
-      return `${row.round_name} ${row.tier_number}`
+      return `${row.round_name}`
     },
   },
   {
@@ -184,7 +184,7 @@ const mobileColumns = [
                   </tr>
                   <tr>
                     <td className="pr-8 text-sm text-secondary">Round</td>
-                    <td className="text-base font-medium">{`${row.round_name} ${row.tier_number}`}</td>
+                    <td className="text-base font-medium">{`${row.round_name}`}</td>
                   </tr>
                   <tr>
                     <td className="pr-8 text-sm text-secondary">

@@ -99,9 +99,12 @@ export const Sale: FC = () => {
 
   const endTimeCountdown = useCountdown((event?.end_time ?? 0) * 1000)
 
-  const countdown = whitelistCountdown.isFinished
-    ? endTimeCountdown
-    : whitelistCountdown
+  const isRound1 = currentRound?.round_number === 1
+
+  const countdown =
+    isRound1 && !whitelistCountdown.isFinished
+      ? whitelistCountdown
+      : endTimeCountdown
 
   const isWhitelistRestricted =
     currentRound?.round_number === 1 &&
@@ -174,7 +177,7 @@ export const Sale: FC = () => {
               Buy Token
             </span>
           </div>
-          {!whitelistCountdown.isFinished ? (
+          {isRound1 && !whitelistCountdown.isFinished ? (
             <Badge size="lg" color="foreground" className="relative rounded">
               <span className="pointer-events-none absolute inset-0 -z-10 animate-miniping rounded-[inherit] ring ring-foreground delay-300 duration-1000 repeat-infinite" />
               <IconSax.MagicStar size={20} variant="Bold" />
@@ -188,9 +191,9 @@ export const Sale: FC = () => {
           <div className="inline-flex items-center gap-1 text-sm sm:text-base">
             <IconSax.Flashy variant="Bold" size={20} />
             <span className="font-medium">
-              {whitelistCountdown.isFinished
-                ? "Sales End In"
-                : "Whitelist Sales End In"}
+              {isRound1 && !whitelistCountdown.isFinished
+                ? "Whitelist Sales End In"
+                : "Sales End In"}
             </span>
           </div>
           <div className="inline-flex items-end gap-1.5">

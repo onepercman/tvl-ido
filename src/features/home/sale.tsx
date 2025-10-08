@@ -177,11 +177,20 @@ export const Sale: FC = () => {
               Buy Token
             </span>
           </div>
-          {isRound1 && !whitelistCountdown.isFinished ? (
+          {isRound1 ? (
             <Badge size="lg" color="foreground" className="relative rounded">
-              <span className="pointer-events-none absolute inset-0 -z-10 animate-miniping rounded-[inherit] ring ring-foreground delay-300 duration-1000 repeat-infinite" />
-              <IconSax.MagicStar size={20} variant="Bold" />
-              <span>Whitelist</span>
+              {!whitelistCountdown.isFinished ? (
+                <>
+                  <span className="pointer-events-none absolute inset-0 -z-10 animate-miniping rounded-[inherit] ring ring-foreground delay-300 duration-1000 repeat-infinite" />
+                  <IconSax.MagicStar size={20} variant="Bold" />
+                  <span>Whitelist</span>
+                </>
+              ) : (
+                <>
+                  <IconSax.Global size={20} variant="Bold" />
+                  <span>Public Sale</span>
+                </>
+              )}
             </Badge>
           ) : null}
         </div>

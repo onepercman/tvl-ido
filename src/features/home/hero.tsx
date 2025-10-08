@@ -37,7 +37,7 @@ export const Hero: FC = () => {
               </div> */}
             </div>
           </div>
-          <div className="mt-[52px] inline-flex w-full justify-between gap-8 sm:justify-start">
+          <div className="mt-[52px] inline-flex w-full justify-center gap-8 sm:justify-start">
             <span className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-xl border border-line bg-component text-2xl font-bold sm:text-[40px]">
               $
             </span>

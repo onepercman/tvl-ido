@@ -120,10 +120,10 @@ export const Sale: FC = () => {
   const _insufficientBalance =
     usdtBalance !== undefined && +amount && +amount > usdtBalance
 
-  const _insufficientAmount =
-    currentTier &&
-    currentRoundInfo &&
-    currentTier.total_money - currentRoundInfo.money_sold < +amount
+  // const _insufficientAmount =
+  //   currentTier &&
+  //   currentRoundInfo &&
+  //   currentTier.total_money - currentRoundInfo.money_sold < +amount
 
   useEffect(() => {
     if (event?.rounds && currentRoundInfo && slideApi) {
@@ -385,19 +385,17 @@ export const Sale: FC = () => {
           }}
           disabled={
             !!isConnected &&
-            (!+amount ||
-              isWhitelistRestricted ||
-              _insufficientBalance ||
-              _insufficientAmount ||
-              (!!refCode?.trim() && !isValidRefCode))
+            (!+amount || isWhitelistRestricted || !!_insufficientBalance)
+            // ||_insufficientAmount ||
+            // (!!refCode?.trim() && !isValidRefCode)
           }
         >
           {isConnected
             ? _insufficientBalance
               ? "Insufficient Balance"
-              : _insufficientAmount
-                ? "Insufficient Amount"
-                : `Pay ${+amount ? formatNumber(+amount) : "by"} USDC`
+              : // : _insufficientAmount
+                //   ? "Insufficient Amount"
+                `Pay ${+amount ? formatNumber(+amount) : "by"} USDC`
             : "Connect Wallet to Purchase"}
         </Button>
       </div>

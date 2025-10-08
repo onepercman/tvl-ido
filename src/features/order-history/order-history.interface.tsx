@@ -29,25 +29,25 @@ export function getTransactionStatusBadge(status: TransactionStatus) {
   switch (status) {
     case TransactionStatus.Pending:
       return (
-        <Badge size="lg" className="rounded-xl">
+        <Badge size="lg" color="default" className="rounded-xl">
           <ArrowSwapVertical size={16} /> Pending
         </Badge>
       )
     case TransactionStatus.Success:
       return (
-        <Badge size="lg" className="rounded-xl">
+        <Badge size="lg" color="success" className="rounded-xl">
           <LuCheck size={16} /> Success
         </Badge>
       )
     case TransactionStatus.Fail:
       return (
-        <Badge size="lg" className="rounded-xl">
+        <Badge size="lg" color="error" className="rounded-xl">
           <LuX size={16} /> Failed
         </Badge>
       )
     case TransactionStatus.Refund:
       return (
-        <Badge size="lg" className="rounded-xl">
+        <Badge size="lg" color="warning" className="rounded-xl">
           <LuReceipt size={16} /> Refund
         </Badge>
       )

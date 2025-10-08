@@ -313,7 +313,7 @@ export const Sale: FC = () => {
               </div>
             </label>
 
-            <div className="flex w-full flex-wrap items-center justify-end gap-2 md:hidden">
+            <div className="grid w-full grid-cols-3 gap-2 md:hidden">
               {packageOptions.map(item => (
                 <Button
                   key={item.value}

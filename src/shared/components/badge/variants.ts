@@ -16,9 +16,9 @@ export const badge = tv({
       foreground: "border border-line-3 bg-foreground text-invert",
       default: "border border-line-3 bg-default text-foreground",
       primary: "bg-primary text-primary-foreground",
-      success: "bg-success text-success",
-      error: "bg-error text-error",
-      warning: "bg-warning text-warning",
+      success: "bg-success text-success-foreground",
+      error: "bg-error text-error-foreground",
+      warning: "bg-warning text-warning-foreground",
     },
   },
   defaultVariants: {

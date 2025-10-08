@@ -17,24 +17,17 @@ import { useAppKitAccount } from "@reown/appkit/react"
 import useEmblaCarousel from "embla-carousel-react"
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { isMobile } from "react-device-detect"
-import { useSearchParams } from "react-router-dom"
 import { cn } from "react-tvcx"
-import { useStore } from "use-valtio-store"
 import { useUSDCBalance } from "../root/use-usdt-balance"
-import UserStore from "../user/user.store"
 import { Round, Tier } from "./event.interface"
 import { RecentTransactions } from "./recent-transactions"
 import { useBuyPackage } from "./use-buy-package"
 import { useCurrentRoundInfo } from "./use-current-round"
 import { useEvent } from "./use-event"
-import { useValidRefCode } from "./use-valid-ref-code"
 import { useWhitelist } from "./use-whitelist"
 
 export const Sale: FC = () => {
-  const {
-    user,
-    // isLeader
-  } = useStore(UserStore)
+  // const { user, isLeader } = useStore(UserStore)
   const [slideRef, slideApi] = useEmblaCarousel()
   const saleBoxRef = useRef<HTMLDivElement>(null)
   const [scrollAreaHeight, setScrollAreaHeight] = useState<number>(0)
@@ -76,25 +69,25 @@ export const Sale: FC = () => {
 
   const { data: isWhitelist } = useWhitelist()
 
-  const [searchParams] = useSearchParams()
+  // const [searchParams] = useSearchParams()
 
-  const refCodeParams = searchParams.get("ref") ?? undefined
+  // const refCodeParams = searchParams.get("ref") ?? undefined
 
   const { data: usdtBalance } = useUSDCBalance()
 
-  const [refCode, setRefCode] = useState<string>()
+  // const [refCode, setRefCode] = useState<string>()
 
-  const {
-    data: isValidRefCode,
-    // isFetching: isCheckingRefCode
-  } = useValidRefCode(refCode)
+  // const {
+  //   data: isValidRefCode,
+  //   // isFetching: isCheckingRefCode
+  // } = useValidRefCode(refCode)
 
-  useEffect(() => {
-    setRefCode("")
-    if (refCodeParams && user && !user.referral) {
-      setRefCode(refCodeParams)
-    }
-  }, [refCodeParams, user])
+  // useEffect(() => {
+  //   setRefCode("")
+  //   if (refCodeParams && user && !user.referral) {
+  //     setRefCode(refCodeParams)
+  //   }
+  // }, [refCodeParams, user])
 
   const {
     data: currentRoundInfo,
